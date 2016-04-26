@@ -44,14 +44,18 @@ def validatePath(file):
 def readSSDHeader(file):
     '''
     Input: file as full path string to file
-    Return: A dictionary of variables as keys with values as the values
+    Return: A dictionary of variables as keys with values as the values,
+            A variable called 'Lines' will contain the number of lines the header takes up
     '''
     
-def getSSDDataStream(file):
+    
+def getSSDDataStream(file,linesInHeader):
     '''
     Input: file as full path string to file
-    Return: Reference to the .ssd data as a byte stream
+           linesInHeader as number of lines contained in the file header 
+    Return: Reference to the .ssd file ready to be used to read lines
     '''
+    #open file as 'rb' and skip over the number of lines the header takes up
 
 def fixLogs(file):
     '''
@@ -66,7 +70,7 @@ def fixLogs(file):
 
 def convertFile(file):
     '''
-    Input: file as a full directory path to a single file that needs to be converted
+    Input: file as a full path string to a single file that needs to be converted
     Returns: True if successful, False if unsuccessful
     '''
     #do file convert
@@ -75,7 +79,7 @@ def convertFile(file):
     
 def convertDirectory(dir):
     '''
-    Input: full directory path that needs to be converted, all applicable files will be
+    Input: full directory path string that needs to be converted, all applicable files will be
             within this directory. If the recursive option was set, then all subdirectories
             will be searched and all applicable files will be converted
     Returns: Tuple of the form, (Number of detected files, Number of unsuccessful files, Array of Unsuccessful files names )
