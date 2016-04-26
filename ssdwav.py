@@ -128,7 +128,7 @@ if __name__ == '__main__':
         isInputDir = os.path.isdir(input)
         
         #Print to user what the program intends to do
-        if(isInputDir):
+        if isInputDir:
             print "Converting files in directory %s" % input
             if recursive:
                 print "and all subdirectories"
@@ -152,8 +152,23 @@ if __name__ == '__main__':
             print "New files will be placed %s" % output
         
         #Start conversion
+        if isInputDir:
+            #convert directory
+            res = convertDirectory(input)
+            print "Found and converted %d files" % res[0]
+            print "%d Files were unsuccessful" % res[1]
+            for i in res[2]:
+                print i
+        else:
+            #convert file
+            if convertFile(input):
+                print "Conversion completed successfully"
+            else:
+                print "Conversion was unsuccessful!"
         
     else:
         usage()
         exit()
+        
+        
         
